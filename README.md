@@ -47,8 +47,3 @@ The project demonstrates authentication, folder/image management, and search fun
 - [Cookie Parser](https://www.npmjs.com/package/cookie-parser) – Cookie handling  
 - [Multer](https://github.com/expressjs/multer) – File upload handling  
 - [Cloudinary](https://cloudinary.com/) – Image storage  
-
----
-
-## 📂 Project Structure  
-
