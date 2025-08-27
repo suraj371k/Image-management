@@ -30,8 +30,8 @@ export const useUserStore = create((set) => ({
     try {
       set({ loading: true, error: null });
       const response = await api.post("/api/user/login", data);
-      set({ user: response.data, error: null, loading: false });
-      return response.data;
+      set({ user: response.data.user, error: null, loading: false });
+      return response.data.user;
     } catch (error) {
       console.error("Error in login user ", error);
       const errorMessage = error.response?.data?.message || error.message || "Login failed";

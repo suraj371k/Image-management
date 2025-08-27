@@ -24,7 +24,6 @@ const Login = () => {
     e.preventDefault();
     try {
       await loginUser(formData);
-      toast.success("login successfully");
       navigate("/");
     } catch (error) {
       console.error(error);

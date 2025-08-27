@@ -12,11 +12,10 @@ const NavigationBar = lazy(() => import("./components/Navbar"));
 const App = () => {
   const { user, fetchProfile } = useUserStore();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     fetchProfile();
-  //   }
-  // }, [fetchProfile]);
+  useEffect(() => {
+    fetchProfile().catch(() => {});
+  }, [fetchProfile]);
+  
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
