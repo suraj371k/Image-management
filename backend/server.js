@@ -6,22 +6,31 @@ import connectDB from './config/db.js'
 
 //import routes
 import userRoutes from './routes/user.routes.js'
+import folderRoutes from './routes/folder.routes.js'
+import imageRoutes from './routes/image.routes.js'
 
 dotenv.config()
 const app = express()
 
 //middleware
-app.use(cors())
-app.use(express.json())
+app.use(
+    cors({
+      origin: "http://localhost:5173", 
+      credentials: true,             
+    })
+  );app.use(express.json())
 app.use(cookieParser())
 
 app.get('/' , (req , res) => {
     res.send('server is running successfully')
 })
 
-//routes
 
+
+//routes
 app.use('/api/user' , userRoutes)
+app.use('/api/folder' , folderRoutes)
+app.use('/api/images' , imageRoutes)
 
 //db connection
 connectDB()
