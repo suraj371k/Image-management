@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useUserStore } from "./store/userStore";
@@ -7,21 +7,26 @@ import { useUserStore } from "./store/userStore";
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
-const ImageGallery = lazy(() => import('./components/ImageGallery'))
-const NavigationBar = lazy(() => import('./components/Navbar'))
+const NavigationBar = lazy(() => import("./components/Navbar"));
 
 const App = () => {
-  const { user } = useUserStore()
+  const { user, fetchProfile } = useUserStore();
+
+  // useEffect(() => {
+  //   if (user) {
+  //     fetchProfile();
+  //   }
+  // }, [fetchProfile]);
   return (
     <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-       {user && <NavigationBar />}
-          <Routes>
-            <Route path="/" element={user ? <Home /> : <Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        {user && <NavigationBar />}
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Suspense>
       <Toaster />
     </BrowserRouter>
   );

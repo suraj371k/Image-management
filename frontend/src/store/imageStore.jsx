@@ -2,6 +2,9 @@ import { create } from "zustand";
 import axios from "axios";
 import { backendUrl } from "../lib/backendUrl";
 
+axios.defaults.withCredentials = true;
+
+
 const useImageStore = create((set, get) => ({
   images: [],
   loading: false,
